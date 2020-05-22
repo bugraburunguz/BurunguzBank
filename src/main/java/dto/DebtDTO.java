@@ -4,38 +4,16 @@ import enums.CompaniesDTO;
 
 import java.io.Serializable;
 
-public class DebtDTO implements Serializable {
-    private static CompaniesDTO companyName;
-    private static int debt;
-    private int intDebtID;
+class DebtDTO implements Serializable {
 
-    public DebtDTO(int intDebtID, CompaniesDTO companyName, int debt) {
+    public int intDebtID;
+    public int intCustomerdebt;
+    public CompaniesDTO companiesDTO;
+
+    public DebtDTO(int intDebtID, int intCustomerdebt, CompaniesDTO company) {
         this.intDebtID = intDebtID;
-        DebtDTO.companyName = companyName;
-        DebtDTO.debt = debt;
+        this.intCustomerdebt = intCustomerdebt;
+        this.companiesDTO = company;
     }
 
-    public int getIntDebtID() {
-        return intDebtID;
-    }
-
-    public void setIntDebtID(int intDebtID) {
-        this.intDebtID = intDebtID;
-    }
-
-    public CompaniesDTO getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(CompaniesDTO companyName) {
-        DebtDTO.companyName = companyName;
-    }
-
-    public int getDebt() {
-        return debt;
-    }
-
-    public void setDebt(int debt) {
-        DebtDTO.debt = debt;
-    }
 }

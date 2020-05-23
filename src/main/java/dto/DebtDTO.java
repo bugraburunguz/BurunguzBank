@@ -4,7 +4,7 @@ import enums.CompaniesDTO;
 
 import java.io.Serializable;
 
-class DebtDTO implements Serializable {
+abstract class DebtDTO implements Serializable {
 
     public int intDebtID;
     public int intCustomerdebt;

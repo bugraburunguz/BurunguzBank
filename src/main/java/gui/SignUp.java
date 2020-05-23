@@ -41,37 +41,55 @@ public class SignUp extends JFrame {
 
         Path path = Paths.get(filepath);
         if (Files.exists(path)) {
+            // file exist
             try {
                 fileInputStream = new FileInputStream(filepath);
                 objectInputStream = new ObjectInputStream(fileInputStream);
-            } catch (IOException var12) {
-                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, var12);
+            } catch (IOException ex) {
+                Logger.getLogger(SignIn.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             try {
                 customer = null;
-
                 while (true) {
                     customer = (CustomerDTO) objectInputStream.readObject();
                     if (customer == null) {
                         break;
                     }
-
                     customerDTOList.add(customer);
                 }
-            } catch (FileNotFoundException var13) {
+            } catch (FileNotFoundException e) {
                 System.out.println("File not found");
-            } catch (IOException var14) {
+            } catch (IOException e) {
                 System.out.println("Error initializing stream");
-            } catch (ClassNotFoundException var15) {
-                var15.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
             }
         }
 
-
         btnBack.addActionListener(e -> {
-            new MainScreen();
-            dispose();
+            try {
+                fileOutputStream = new FileOutputStream(new File(filepath));
+                objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                for (CustomerDTO pi : customerDTOList) {
+                    objectOutputStream.writeObject(pi);
+                    objectOutputStream.flush();
+                }
+
+            } catch (FileNotFoundException fnfe) {
+                System.out.println("File not found");
+            } catch (IOException ioe) {
+                System.out.println("Error initializing stream");
+            }
+
+            try {
+                objectOutputStream.close();
+                fileOutputStream.close();
+                new MainScreen();
+                dispose();
+            } catch (IOException ex) {
+                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         btnSignUp.addActionListener(e -> {
             String stringCustomerName = txtCustomerName.getText().trim();
@@ -94,32 +112,14 @@ public class SignUp extends JFrame {
                     0,
                     longCustomerIdentityNumber,
                     longCustomerPhoneNumber, 1, CompaniesDTO.NULL, 1);
+
             customerDTOList.add(customer);
 
-
-            try {
-                fileOutputStream = new FileOutputStream(new File(filepath));
-                objectOutputStream = new ObjectOutputStream(fileOutputStream);
-
-                for (CustomerDTO customerDTO : customerDTOList) {
-                    objectOutputStream.writeObject(customerDTO);
-                    objectOutputStream.flush();
-                }
-            } catch (FileNotFoundException var7) {
-                System.out.println("File not found");
-            } catch (IOException var8) {
-                System.out.println("Error initializing stream");
-            }
-
-            try {
-                objectOutputStream.close();
-                fileOutputStream.close();
-
-            } catch (IOException var6) {
-                Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, var6);
-            }
-
-
+            txtCustomerIdentityNumber.setText("");
+            txtCustomerName.setText("");
+            txtCustomerPassword.setText("");
+            txtCustomerPhoneNumber.setText("");
+            txtCustomerSurname.setText("");
         });
 
     }

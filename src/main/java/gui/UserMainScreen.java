@@ -64,7 +64,7 @@ public class UserMainScreen extends JFrame {
         });
 
         btnSendMoney.addActionListener(e -> {
-            new SendMoney();
+            new SendMoney(customerDTOArrayList, i);
             dispose();
         });
         if (customerDTOArrayList.get(i).companiesDTO == CompaniesDTO.NULL) {

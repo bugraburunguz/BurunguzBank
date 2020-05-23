@@ -1,16 +1,33 @@
 package dto;
 
 import enums.CompaniesDTO;
-import gui.SignIn;
+import gui.MainScreen;
+import gui.SignUp;
 import interfaces.Controller;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CustomerDTO extends DebtDTO implements Serializable, Controller {
     private static final long serialVersionUID = 6846058699968947809L;
+
+    private final String filepath = "customerList.txt";
+    public CustomerDTO customer;
+    public List<CustomerDTO> customerDTOList = new ArrayList();
+
+    public FileOutputStream fileOutputStream = null;
+    public ObjectOutputStream objectOutputStream = null;
+
+    public FileInputStream fileInputStream = null;
+    public ObjectInputStream objectInputStream = null;
+
 
     private int intCustomerID;
     private int intCustomerIBAN;
@@ -140,45 +157,82 @@ public class CustomerDTO extends DebtDTO implements Serializable, Controller {
         test.defaultReadObject();
     }
 
-    public boolean login(int intCustomerNumber, int intCustomerPassword) {
-        final String filepath = "customerList.txt";
-        FileInputStream fileInputStream = null;
-        ObjectInputStream objectInputStream = null;
-        ArrayList<CustomerDTO> customerDTOList = new ArrayList<>();
-        CustomerDTO customerDTO;
-        try {
-            fileInputStream = new FileInputStream(filepath);
-            objectInputStream = new ObjectInputStream(fileInputStream);
-        } catch (IOException var14) {
-            Logger.getLogger(SignIn.class.getName()).log(Level.SEVERE, null, var14);
-        }
+    public void signUp(int intCustomerPassword,
+                       String stringCustomerName,
+                       String stringCustomerSurname,
+                       long longCustomerIdentityNumber,
+                       long longCustomerPhoneNumber
 
-        try {
-
-            while (true) {
-                customerDTO = (CustomerDTO) objectInputStream.readObject();
-                if (customerDTO == null) {
-                    break;
-                }
-
-                customerDTOList.add(customerDTO);
-
-
-                for (int i = 0; i < customerDTOList.size(); i++) {
-                    System.out.println(customerDTOList.get(i).getIntCustomerNumber());
-
-                    return intCustomerNumber == customerDTOList.get(i).getIntCustomerNumber()
-                            && intCustomerPassword == customerDTOList.get(i).getIntCustomerPassword();
-                }
+    ) {
+        Path path = Paths.get(filepath);
+        if (Files.exists(path)) {
+            try {
+                fileInputStream = new FileInputStream(filepath);
+                objectInputStream = new ObjectInputStream(fileInputStream);
+            } catch (IOException var12) {
+                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, var12);
             }
-        } catch (FileNotFoundException var15) {
-            System.out.println("File not found");
-        } catch (IOException var16) {
-            System.out.println("Error initializing stream");
-        } catch (ClassNotFoundException var17) {
-            var17.printStackTrace();
+
+            try {
+                customer = null;
+
+                while (true) {
+                    customer = (CustomerDTO) objectInputStream.readObject();
+                    if (customer == null) {
+                        break;
+                    }
+
+                    customerDTOList.add(customer);
+                }
+            } catch (FileNotFoundException var13) {
+                System.out.println("File not found");
+            } catch (IOException var14) {
+                System.out.println("Error initializing stream");
+            } catch (ClassNotFoundException var15) {
+                var15.printStackTrace();
+            }
         }
-        return false;
+
+
+        //Randomize
+        int customerID = ThreadLocalRandom.current().nextInt(1, 99999);
+        int customerIBAN = ThreadLocalRandom.current().nextInt(10000, 99999);
+        int intCustomerNumber = ThreadLocalRandom.current().nextInt(10000, 99999);
+        //
+        customer = new CustomerDTO(customerID,
+                customerIBAN,
+                intCustomerNumber,
+                intCustomerPassword,
+                stringCustomerName,
+                stringCustomerSurname,
+                0,
+                longCustomerIdentityNumber,
+                longCustomerPhoneNumber, 1, CompaniesDTO.NULL, 1);
+        customerDTOList.add(customer);
+
+
+        try {
+            fileOutputStream = new FileOutputStream(new File(filepath));
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+            for (CustomerDTO customerDTO : customerDTOList) {
+                objectOutputStream.writeObject(customerDTO);
+                objectOutputStream.flush();
+            }
+        } catch (FileNotFoundException var7) {
+            System.out.println("File not found");
+        } catch (IOException var8) {
+            System.out.println("Error initializing stream");
+        }
+
+        try {
+            objectOutputStream.close();
+            fileOutputStream.close();
+
+        } catch (IOException var6) {
+            Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, var6);
+        }
+
     }
 
 }

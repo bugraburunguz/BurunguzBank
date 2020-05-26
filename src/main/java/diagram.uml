@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1292.0" y="949.0">gui.SignIn</node>
+    <node x="0.0" y="1505.0">gui.MainScreen</node>
+    <node x="879.0" y="949.0">gui.SendMoney</node>
+    <node x="1520.0" y="0.0">gui.PayDebt</node>
+    <node x="166.9999999999999" y="0.0">dto.DebtDTO</node>
+    <node x="0.0" y="228.0">dto.CustomerDTO</node>
+    <node x="679.0" y="0.0">gui.UserMainScreen</node>
+    <node x="0.0" y="949.0">gui.WithDrawMoney</node>
+    <node x="1123.0" y="0.0">gui.SignUp</node>
+    <node x="276.0" y="1505.0">enums.CompaniesDTO</node>
+    <node x="448.0" y="949.0">gui.DepositMoney</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="dto.CustomerDTO" target="dto.DebtDTO">
+      <point x="-1.1368683772161603E-13" y="-338.0" />
+      <point x="0.0" y="89.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.34905399169358564" x="2111.4754098360654" y="2832.4572910876414" />
+  <SelectedNodes>
+    <node>gui.SignIn</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

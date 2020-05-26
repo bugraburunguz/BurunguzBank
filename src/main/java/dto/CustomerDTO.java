@@ -20,7 +20,7 @@ public class CustomerDTO extends DebtDTO implements Serializable, Controller {
 
     private final String filepath = "customerList.txt";
     public CustomerDTO customer;
-    public List<CustomerDTO> customerDTOList = new ArrayList();
+    public List<CustomerDTO> customerDTOList = new ArrayList<>();
 
     public FileOutputStream fileOutputStream = null;
     public ObjectOutputStream objectOutputStream = null;

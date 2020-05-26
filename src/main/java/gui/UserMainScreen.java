@@ -28,10 +28,6 @@ public class UserMainScreen extends JFrame {
     private JLabel txtError;
 
     public UserMainScreen() {
-        btnWithdrawMoney.addActionListener(e -> {
-            new WithDrawMoney();
-            dispose();
-        });
 
     }
 
@@ -44,7 +40,7 @@ public class UserMainScreen extends JFrame {
 
         if (customerDTOArrayList.get(i).companiesDTO == CompaniesDTO.NULL) {
 
-            txtCustomerDebts.setText("Borcunuz Bulunmamaktadır ");
+            txtCustomerDebts.setText("Borcunuz Bulunmamaktadır  ");
 
         } else {
             txtCustomerDebts.setText("Firma: " + customerDTOArrayList.get(i).companiesDTO.name()
@@ -108,8 +104,6 @@ public class UserMainScreen extends JFrame {
             new MainScreen();
             dispose();
         });
-
-
     }
 }
 

@@ -18,7 +18,7 @@ public class SignUp extends JFrame {
 
     private final String filepath = "customerList.txt";
     public CustomerDTO customer;
-    public List<CustomerDTO> customerDTOList = new ArrayList();
+    public List<CustomerDTO> customerDTOList = new ArrayList<>();
 
     public FileOutputStream fileOutputStream = null;
     public ObjectOutputStream objectOutputStream = null;
@@ -85,11 +85,12 @@ public class SignUp extends JFrame {
             try {
                 objectOutputStream.close();
                 fileOutputStream.close();
-                new MainScreen();
-                dispose();
+
             } catch (IOException ex) {
                 Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
             }
+            new MainScreen();
+            dispose();
         });
         btnSignUp.addActionListener(e -> {
             String stringCustomerName = txtCustomerName.getText().trim();
@@ -103,6 +104,7 @@ public class SignUp extends JFrame {
             int customerIBAN = ThreadLocalRandom.current().nextInt(10000, 99999);
             int customerNumber = ThreadLocalRandom.current().nextInt(10000, 99999);
             //
+            customer = null;
             customer = new CustomerDTO(customerID,
                     customerIBAN,
                     customerNumber,
@@ -114,6 +116,7 @@ public class SignUp extends JFrame {
                     longCustomerPhoneNumber, 1, CompaniesDTO.NULL, 1);
 
             customerDTOList.add(customer);
+
 
             txtCustomerIdentityNumber.setText("");
             txtCustomerName.setText("");
@@ -130,12 +133,13 @@ public class SignUp extends JFrame {
 
     private void initComponents() {
 
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(800, 400, 500, 300);
         getContentPane().add(pnlSignUp);
         setVisible(true);
         pack();
     }
+
 }
 
 

@@ -16,7 +16,7 @@ public class WithDrawMoney extends JFrame {
 
     private final String filepath = "customerList.txt";
     public CustomerDTO customer;
-    public List<CustomerDTO> customerDTOList = new ArrayList();
+    public List<CustomerDTO> customerDTOList = new ArrayList<>();
 
     public FileOutputStream fileOutputStream = null;
     public ObjectOutputStream objectOutputStream = null;
@@ -116,4 +116,6 @@ public class WithDrawMoney extends JFrame {
         setVisible(true);
         pack();
     }
+
+
 }

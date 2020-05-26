@@ -1,8 +1,6 @@
 package gui;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainScreen extends JFrame {
 
@@ -16,21 +14,15 @@ public class MainScreen extends JFrame {
         setBounds(800, 400, 500, 300);
         getContentPane().add(MainScreenPanel);
         setVisible(true);
-        btnSignIn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        btnSignIn.addActionListener(e -> {
 
-                new SignIn();
-                dispose();
-            }
+            new SignIn();
+            dispose();
         });
-        benSingUp.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        benSingUp.addActionListener(e -> {
 
-                new SignUp();
-                dispose();
-            }
+            new SignUp();
+            dispose();
         });
     }
 

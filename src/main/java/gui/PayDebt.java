@@ -1,6 +1,7 @@
 package gui;
 
 import dto.CustomerDTO;
+import enums.CompaniesDTO;
 
 import javax.swing.*;
 import java.io.*;
@@ -16,7 +17,7 @@ public class PayDebt extends JFrame {
 
     private final String filepath = "customerList.txt";
     public CustomerDTO customer;
-    public List<CustomerDTO> customerDTOList = new ArrayList();
+    public List<CustomerDTO> customerDTOList = new ArrayList<>();
 
     public FileOutputStream fileOutputStream = null;
     public ObjectOutputStream objectOutputStream = null;
@@ -63,6 +64,10 @@ public class PayDebt extends JFrame {
             } catch (ClassNotFoundException var15) {
                 var15.printStackTrace();
             }
+            int debt = customerDTOArrayList.get(i).intCustomerdebt;
+            CompaniesDTO company = customerDTOArrayList.get(i).companiesDTO;
+            txtCompanyName.setText(String.valueOf(company));
+            txtDebt.setText(String.valueOf(debt));
             System.out.println(customerDTOArrayList.get(i).getIntCustomerBalance());
             btnPay.addActionListener(e -> {
                 int money = customerDTOArrayList.get(i).intCustomerdebt;

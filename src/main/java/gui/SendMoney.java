@@ -56,6 +56,9 @@ public class SendMoney extends JFrame {
                     }
                     new UserMainScreen(customerDTOArrayList, i);
                     dispose();
+                } else if (Integer.parseInt(txtMoney.getText()) > customerDTOArrayList.get(i).getIntCustomerBalance()) {
+                    txtError.setText("Çekmek istediğiniz miktar paranızdan yüksek" +
+                            "Paranız: " + customerDTOArrayList.get(i).getIntCustomerBalance() + "TL");
                 } else {
                     txtError.setText("Aradığınız kişi bulunamadı");
                 }

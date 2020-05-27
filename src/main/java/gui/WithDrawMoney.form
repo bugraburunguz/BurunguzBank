@@ -8,7 +8,7 @@
     <properties>
       <preferredSize width="400" height="100"/>
     </properties>
-    <border type="line"/>
+    <border type="line" title="Bürüngüz Bank"/>
     <children>
       <component id="74a2e" class="javax.swing.JTextField" binding="txtMoney">
         <constraints>

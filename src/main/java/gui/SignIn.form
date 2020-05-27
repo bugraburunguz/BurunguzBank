@@ -8,7 +8,7 @@
     <properties>
       <preferredSize width="650" height="250"/>
     </properties>
-    <border type="none"/>
+    <border type="none" title="Bürüngüz Bank"/>
     <children>
       <component id="ca88c" class="javax.swing.JLabel" binding="txtErrorLabel">
         <constraints>

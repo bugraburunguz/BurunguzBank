@@ -6,10 +6,10 @@
     <node x="1292.0" y="949.0">gui.SignIn</node>
     <node x="0.0" y="1505.0">gui.MainScreen</node>
     <node x="879.0" y="949.0">gui.SendMoney</node>
+    <node x="167.0" y="0.0">dto.DebtDTO</node>
     <node x="1520.0" y="0.0">gui.PayDebt</node>
-    <node x="166.9999999999999" y="0.0">dto.DebtDTO</node>
-    <node x="0.0" y="228.0">dto.CustomerDTO</node>
     <node x="679.0" y="0.0">gui.UserMainScreen</node>
+    <node x="0.0" y="228.0">dto.CustomerDTO</node>
     <node x="0.0" y="949.0">gui.WithDrawMoney</node>
     <node x="1123.0" y="0.0">gui.SignUp</node>
     <node x="276.0" y="1505.0">enums.CompaniesDTO</node>
@@ -18,11 +18,11 @@
   <notes />
   <edges>
     <edge source="dto.CustomerDTO" target="dto.DebtDTO">
-      <point x="-1.1368683772161603E-13" y="-338.0" />
+      <point x="0.0" y="-338.0" />
       <point x="0.0" y="89.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.34905399169358564" x="2111.4754098360654" y="2832.4572910876414" />
+  <settings layout="Hierarchic Group" zoom="0.30239179954441914" x="936.0" y="868.0" />
   <SelectedNodes>
     <node>gui.SignIn</node>
   </SelectedNodes>
